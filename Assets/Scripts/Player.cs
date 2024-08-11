@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
 {
     [Header("Movement")]
     public float moveSpeed = 8f;
+    public float jumpForce;
 
 
     #region Components
@@ -18,6 +19,8 @@ public class Player : MonoBehaviour
     public PlayerStateMachine stateMachine { get; private set; }
     public PlayerStateIdle idleState { get; private set; }
     public PlayerStateMove moveState { get; private set; }
+    public PlayerStateJump jumpState { get; private set; }
+    public PlayerStateAir airState { get; private set; }
     #endregion
 
     private void Awake()
@@ -25,6 +28,8 @@ public class Player : MonoBehaviour
         stateMachine = new PlayerStateMachine();
         idleState = new PlayerStateIdle(this, stateMachine, "Idle");
         moveState = new PlayerStateMove(this, stateMachine, "Move");
+        jumpState = new PlayerStateJump(this, stateMachine, "Jump");
+        airState  = new PlayerStateAir(this, stateMachine, "Jump");
     }
 
     private void Start()
