@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerState
 {
@@ -11,6 +12,7 @@ public class PlayerState
     protected Rigidbody2D rb;
 
     protected float xInput;
+    protected float xInput2;
     private string animBoolName;
 
     // constructor
@@ -35,6 +37,12 @@ public class PlayerState
     public virtual void Exit()
     {
         player.anim.SetBool(animBoolName, false);
+    }
+
+    public void Move(InputAction.CallbackContext _context)
+    {
+        xInput2 = _context.ReadValue<Vector2>().x;
+        Debug.Log(xInput2);
     }
 
 }
