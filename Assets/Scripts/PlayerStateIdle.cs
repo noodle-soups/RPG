@@ -24,4 +24,5 @@ public class PlayerStateIdle : PlayerState
         if (xInput != 0)
             stateMachine.ChangeState(player.moveState);
     }
+
 }

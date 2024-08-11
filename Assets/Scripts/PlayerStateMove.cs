@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerStateMove : PlayerState
 {
@@ -25,4 +26,5 @@ public class PlayerStateMove : PlayerState
         if (xInput == 0)
             stateMachine.ChangeState(player.idleState);
     }
+
 }

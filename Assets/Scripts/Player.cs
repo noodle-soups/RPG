@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Windows;
 
 public class Player : MonoBehaviour
 {
@@ -44,6 +43,5 @@ public class Player : MonoBehaviour
     {
         rb.velocity = new Vector2(_xVelocity, _yVelocity);
     }
-
 
 }
