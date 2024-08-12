@@ -21,6 +21,12 @@ public class PlayerStateGrounded : PlayerState
     public override void Update()
     {
         base.Update();
+
+        // dash state
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+            stateMachine.ChangeState(player.dashState);
+
+        // jump state
         if (Input.GetKeyDown(KeyCode.Space) && player.IsGroundDetected())
             stateMachine.ChangeState(player.jumpState);
     }
