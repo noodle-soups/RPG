@@ -22,9 +22,9 @@ public class PlayerStateGrounded : PlayerState
     {
         base.Update();
 
-        // dash state
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-            stateMachine.ChangeState(player.dashState);
+        // maintain air state after air dash
+        if (!player.IsGroundDetected())
+            stateMachine.ChangeState(player.airState);
 
         // jump state
         if (Input.GetKeyDown(KeyCode.Space) && player.IsGroundDetected())

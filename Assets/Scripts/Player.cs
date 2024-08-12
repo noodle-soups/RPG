@@ -5,11 +5,16 @@ using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
-    [Header("Movement Info")]
+    [Header("Movement")]
     public float moveSpeed = 8f;
     public float jumpForce;
+
+    [Header("Dash")]
+    [SerializeField] private float dashCooldown;
+    private float dashTimer;
     public float dashSpeed;
     public float dashDuration;
+    public float dashDir { get; private set; }
 
     [Header("Collision Info")]
     [SerializeField] private Transform groundCheck;
@@ -55,6 +60,24 @@ public class Player : MonoBehaviour
     private void Update()
     {
         stateMachine.currentState.Update();
+        CheckForDashInput();
+    }
+
+    private void CheckForDashInput()
+    {
+        dashTimer -= Time.deltaTime;
+
+        if (Input.GetKeyDown(KeyCode.LeftShift) && dashTimer < 0)
+        {
+            dashTimer = dashCooldown;
+
+            dashDir = Input.GetAxisRaw("Horizontal");
+
+            if (dashDir == 0)
+                dashDir = facingDir;
+
+            stateMachine.ChangeState(dashState);
+        }
     }
 
     public void SetVelocity(float _xVelocity, float _yVelocity)
